@@ -25,6 +25,7 @@
   <script src="scripts/main.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
+      window.alert("installing")
       navigator.serviceWorker.register('/sw.js');
     }
   </script>
