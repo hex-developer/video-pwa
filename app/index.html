@@ -14,8 +14,8 @@
 
   <main>
     <form id="upload-form">
-      <label for="video-file-input">Select video file to upload:</label>
-      <input type="file" id="video-file-input" accept="video/*">
+      <label for="video">Select video file to upload:</label>
+      <input type="file" id="video" accept="video/*">
       <button type="submit">Upload</button>
     </form>
 
@@ -27,7 +27,6 @@
   <script src="scripts/main.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      window.alert("installing")
       navigator.serviceWorker.register('/sw.js');
     }
   </script>
