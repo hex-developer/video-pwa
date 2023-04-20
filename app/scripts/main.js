@@ -27,7 +27,7 @@ form.addEventListener('submit', (event) => {
       };
 
       store.add(video);
-      windows.alert('video added')
+      window.alert('video added')
     };
   };
 });
