@@ -4,7 +4,7 @@ const videoContainer = document.querySelector('#player');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
+  windows.alert("uploaded")
   const file = fileInput.files[0];
 
   // Use the File API to read the contents of the file
@@ -27,6 +27,7 @@ form.addEventListener('submit', (event) => {
       };
 
       store.add(video);
+      windows.alert('video added')
     };
   };
 });
@@ -44,5 +45,7 @@ db.onsuccess = (event) => {
     const url = URL.createObjectURL(blob);
 
     videoContainer.src = url;
+    window.alert("video loaded")
+    window.alert(url)
   };
 };
