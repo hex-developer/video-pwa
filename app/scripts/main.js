@@ -1,6 +1,6 @@
-const form = document.querySelector('#upload-form');
-const fileInput = document.querySelector('#video-file-input');
-const videoContainer = document.querySelector('#video-container');
+const form = document.querySelector('form');
+const fileInput = document.querySelector('#video');
+const videoContainer = document.querySelector('#player');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -43,7 +43,6 @@ db.onsuccess = (event) => {
     const blob = new Blob([video.data], { type: video.type });
     const url = URL.createObjectURL(blob);
 
-    const videoElement = document.createElement('video');
-    videoElement.setAttribute('controls', '');
-    videoElement.src = url
-
+    videoContainer.src = url;
+  };
+};
