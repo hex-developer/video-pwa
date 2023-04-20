@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Video Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local Video Player PWA">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    video {
+      width: 100%;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #007aff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container"></div>
+  <div id="controls-container">
+    <button id="select-video-button">Select Video</button>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(() => {
+            console.log('Service worker registered.');
+          })
+          .catch((error) => {
+            console.log('Service worker registration failed:', error);
+          });
+      });
+    }
+
+    const videoContainer = document.getElementById('video-container');
+    const selectVideoButton = document.getElementById('select-video-button');
+    const videoInput = document.createElement('input');
+    videoInput.type = 'file';
+    videoInput.accept = 'video/*';
+    videoInput.style.display = 'none';
+
+    videoInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) {
+        return;
+      }
+
+      const video = document.createElement('video');
+      video.src = URL.createObjectURL(file);
+      video.controls = true;
+      videoContainer.innerHTML = '';
+      videoContainer.appendChild(video);
+    });
+
+    selectVideoButton.addEventListener('click', () => {
+      videoInput.click();
+    });
+  </script>
+</body>
+</html>
+
